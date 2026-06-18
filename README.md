@@ -50,11 +50,11 @@ Buka Command Prompt lalu jalankan:
 
 ### 2. Login ke aplikasi web
 
-Setelah Chrome terbuka, lakukan login ke aplikasi web yang akan digunakan.
+Setelah Chrome terbuka, lakukan login ke aplikasi web yang akan digunakan. Masuk ke menu RL tempat penginputan
 
 ### 3. Siapkan file Excel
 
-Sesuaikan data pada file `sample.xlsx` dengan format yang dibutuhkan program.
+Sesuaikan data pada file `sample_RLX.xlsx` dengan format yang dibutuhkan program.
 
 ### 4. Jalankan program
 
@@ -69,3 +69,11 @@ python main.py
 ## Catatan
 
 Repository ini hanya berisi contoh implementasi otomatisasi menggunakan Selenium. Seluruh data, konfigurasi, dan informasi sensitif telah dihilangkan.
+
+## Mengambil fields
+
+```bash
+Array.from(
+    document.querySelectorAll("input[type='number']")
+).map(x => x.name)
+```

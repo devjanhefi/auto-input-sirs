@@ -15,10 +15,10 @@ driver = webdriver.Chrome(options=options)
 
 #import excel
 # print("Memproses:excel")
-df = pd.read_excel("sample.xlsx")
+df = pd.read_excel("sample_RL4.xlsx")
 data = df.iloc[3:]
 
-for index, row in data.iloc[218:].iterrows():
+for index, row in data.iterrows():
 
     icd = str(row["No.Daftar Terperinci"]).strip()
 
@@ -127,6 +127,13 @@ for index, row in data.iloc[218:].iterrows():
 
     wanita = False
 
+    field_l = driver.find_element(
+        By.NAME,
+        "jmlhPasHidupMatiUmurGen123JamL"
+    )
+
+    wanita = not field_l.is_enabled()
+
     for i, field_name in enumerate(field_names):
 
         nilai = row.iloc[i + 5]
@@ -137,14 +144,6 @@ for index, row in data.iloc[218:].iterrows():
         if float(nilai) == 0:
             continue
 
-        field_l = driver.find_element(
-            By.NAME,
-            "jmlhPasHidupMatiUmurGen123JamL"
-        )
-
-        wanita = not field_l.is_enabled()
-
-
         field = driver.find_element(By.NAME, field_name)
 
         if not field.is_enabled():
@@ -154,7 +153,6 @@ for index, row in data.iloc[218:].iterrows():
         field.send_keys(str(int(nilai)))
 
         # print(field_name, "=", nilai)
-
 
     # Pasien keluar mati
     mati_l = row.iloc[56]
